@@ -8,3 +8,5 @@ A simple boilerplate for api using Typescript and Clean Archicteture
   -   npx husky add .husky/pre-commit "yarn lint-staged"
   -   npx husky add .husky/pre-push "yarn test:push"
   -   npx husky add .husky/commit-msg ".git/hooks/commit-msg \$1"
+  -   chmod ug+x .husky/pre-commit
+  -   chmod ug+x .husky/pre-push
