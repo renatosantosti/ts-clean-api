@@ -2,6 +2,7 @@
 A simple boilerplate for api using Typescript and Clean Archicteture
 
 ## First of All:
+ -  check if you have node >= 16.13
  run npm install or yarn install
 
  next run husky to prepare stages:
