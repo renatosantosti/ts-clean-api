@@ -1,4 +1,8 @@
-import { IUser } from "../entities/User";
+import {
+  IUser,
+  UpdateUserPayload,
+  UpdateUserPasswordPayload,
+} from "../entities/User";
 
 export interface ICreateUserRepository {
   execute(user: IUser): Promise<IUser>;
@@ -13,9 +17,12 @@ export interface IListUserRepository {
 }
 
 export interface IUpdateUserRepository {
-  execute(id: number): Promise<IUser>;
+  execute(user: UpdateUserPayload): Promise<IUser>;
+}
+export interface IUpdateUserPasswordRepository {
+  execute(user: UpdateUserPasswordPayload): Promise<IUser>;
 }
 
 export interface IDeleteUserRepository {
-  execute(id: number): Promise<IUser>;
+  execute(id: number): void;
 }

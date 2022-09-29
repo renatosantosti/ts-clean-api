@@ -5,3 +5,16 @@ export type IUser = {
   password: string;
   active: boolean;
 };
+
+export type UpdateUserPayload = {
+  id: number;
+  name: string;
+  email: string;
+  active: boolean;
+};
+
+export type UpdateUserPasswordPayload = {
+  execute(user: UpdateUserPasswordPayload): IUser | PromiseLike<IUser>;
+  id: number;
+  password: string;
+};
