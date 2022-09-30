@@ -146,7 +146,7 @@ describe("User", () => {
   it("Should not update user password wrong", async () => {
     try {
       // Doing test
-      await new UpdateUserPassword(
+      const user = await new UpdateUserPassword(
         new MockUpdateUserPasswordRepository(),
         new MockToHashService()
       ).execute(
@@ -156,6 +156,7 @@ describe("User", () => {
         },
         [new MockIValidatorFieldPassword()]
       );
+      throw new Error("password updated");
     } catch (err) {
       expect((err as Error).message).toBe("Invalid password");
     }
