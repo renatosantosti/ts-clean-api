@@ -146,7 +146,7 @@ describe("User", () => {
   it("Should not update user password wrong", async () => {
     try {
       // Doing test
-      const user = await new UpdateUserPassword(
+      await new UpdateUserPassword(
         new MockUpdateUserPasswordRepository(),
         new MockToHashService()
       ).execute(
