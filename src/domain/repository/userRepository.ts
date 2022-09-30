@@ -20,7 +20,7 @@ export interface IUpdateUserRepository {
   execute(user: UpdateUserPayload): Promise<IUser>;
 }
 export interface IUpdateUserPasswordRepository {
-  execute(user: UpdateUserPasswordPayload): Promise<IUser>;
+  execute(user: UpdateUserPasswordPayload): Promise<UpdateUserPasswordPayload>;
 }
 
 export interface IDeleteUserRepository {

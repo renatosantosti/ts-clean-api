@@ -6,6 +6,7 @@ module.exports = {
   transform: {
     ".+\\.ts$": "ts-jest",
   },
+  testTimeout: 6 * 1000,
   moduleNameMapper: {
     "@/(.*)": "<rootDir>/src/$1",
   },

@@ -13,8 +13,7 @@ export type UpdateUserPayload = {
   active: boolean;
 };
 
-export type UpdateUserPasswordPayload = {
-  execute(user: UpdateUserPasswordPayload): IUser | PromiseLike<IUser>;
+export interface UpdateUserPasswordPayload {
   id: number;
   password: string;
-};
+}
