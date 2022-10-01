@@ -5,11 +5,13 @@ import { CreateUser } from "@/domain/use-cases/User/createUser";
 import { GetUser } from "@/domain/use-cases/User/getUser";
 import { UpdateUser } from "@/domain/use-cases/User/updateUser";
 import { UpdateUserPassword } from "@/domain/use-cases/User/updateUserPassword";
+import { ListUser } from "@/domain/use-cases/User/listUser";
 import {
   ICreateUserRepository,
   IGetUserRepository,
   IUpdateUserRepository,
   IUpdateUserPasswordRepository,
+  IListUserRepository,
 } from "@/domain/repository/userRepository";
 
 // Mock repository for get user
@@ -57,6 +59,35 @@ class MockUpdateUserPasswordRepository
   }
 }
 
+// Mock repository for update user password
+class MockListUserRepositoryRepository implements IListUserRepository {
+  async execute(): Promise<Array<IUser>> {
+    return [
+      {
+        id: 1,
+        name: "Ana",
+        email: "string@test",
+        password: "pwd",
+        active: true,
+      },
+      {
+        id: 2,
+        name: "Maria",
+        email: "string@test",
+        password: "pwd",
+        active: true,
+      },
+      {
+        id: 3,
+        name: "Thiago",
+        email: "string@test",
+        password: "pwd",
+        active: true,
+      },
+    ];
+  }
+}
+
 // Mock hash password
 class MockToHashService implements IHashPasswordTransform {
   execute(password: string): Promise<string> {
@@ -67,6 +98,7 @@ class MockToHashService implements IHashPasswordTransform {
 }
 // Mock validator field for password
 class MockIValidatorFieldPassword implements IValidatorField {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isValid(password: any): Promise<boolean> {
     return new Promise((resolve) => {
       if (password?.length >= 8) {
@@ -87,7 +119,17 @@ describe("User", () => {
     expect(user.id).toBe(15);
   });
 
-  it("Should create a new user", async () => {
+  it("Should list all users", async () => {
+    // create use case
+    const listUser: ListUser = new ListUser(
+      new MockListUserRepositoryRepository()
+    );
+    // Doing test
+    const allUsers: Array<IUser> = await listUser.execute();
+    expect(allUsers?.length).toBeGreaterThan(2);
+  });
+
+  it("Should list all users", async () => {
     // create use case
     const createUser: CreateUser = new CreateUser(
       new MockCreateUserRepository()
@@ -152,7 +194,7 @@ describe("User", () => {
       ).execute(
         {
           id: 15,
-          password: "12345678",
+          password: "123",
         },
         [new MockIValidatorFieldPassword()]
       );

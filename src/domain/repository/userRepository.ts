@@ -13,7 +13,7 @@ export interface IGetUserRepository {
 }
 
 export interface IListUserRepository {
-  execute(user: IUser): Promise<IUser>;
+  execute(): Promise<Array<IUser>>;
 }
 
 export interface IUpdateUserRepository {
