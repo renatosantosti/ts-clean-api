@@ -152,13 +152,14 @@ describe("User", () => {
       ).execute(
         {
           id: 15,
-          password: "123",
+          password: "12345678",
         },
         [new MockIValidatorFieldPassword()]
       );
-      throw new Error("password updated");
+      throw new Error();
     } catch (err) {
-      expect((err as Error).message).toBe("Invalid password");
+      expect(err).toBeInstanceOf(Error);
+      expect(err).toHaveProperty("message", "Invalid password");
     }
   });
 });
